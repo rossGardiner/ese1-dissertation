@@ -1,7 +1,7 @@
 image: blang/latex
 build:
   script:
-    - latexmk -pdf -cd docs/dissertation/dissertation.tex
+    - latexmk -pdf -cd Dissertation\ template/dissertation.tex
   artifacts:
     paths:
       - "*.pdf"
