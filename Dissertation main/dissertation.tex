@@ -1,0 +1,104 @@
+% This example An LaTeX document showing how to use the l3proj class to
+% write your report. Use pdflatex and bibtex to process the file, creating 
+% a PDF file as output (there is no need to use dvips when using pdflatex).
+
+% Modified 
+
+\documentclass{l3proj}
+
+\begin{document}
+
+\title{ESE1 Team Project Dissertation}
+
+\author{Agnes Ola \\
+        Ross James Gardiner \\
+        Lorenzo Roccato \\
+        Duncan Lowther \\
+        Nawaf Al Lawati}
+
+\date{1 October 2019}
+
+\maketitle
+
+\begin{abstract}
+
+%% The abstract goes here
+
+\end{abstract}
+
+%% Comment out this line if you do not wish to give consent for your
+%% work to be distributed in electronic format.
+\educationalconsent
+
+\newpage
+
+\section{Marking sheme - remove before submission}
+
+Reflecting on your practice is the hardest part of writing the dissertation, so you are encouraged to talk to the course coordinators and demonstrators to find out what you could include in this section. A good source of examples of incidents for reflection is often the documentation from your retrospectives, because you used the retrospectives to identify areas of your process that could be changed or done better. You should also, try to relate your experiences to other studies available in the software engineering literature (the recommended reading is a good starting point for this).
+
+For example, if you found that you had to drop a feature during an iteration, discuss the reasons why the feature had to be dropped. Had you given yourselves too much work? Was the feature harder to implement than you realised? Had you got your priorities wrong? Then consider looking at the literature (see the recommended reading for PSD3) on project planning and estimation. Was your experience typical of a software project? What steps do other developers advocate for improving estimation?
+
+Alternatively, did you have to make some big design decisions or choice of software platforms early on in the project? What impact did these choices have? Were they the right ones? How might you have improved the decision making process to reduce uncertainty? Did you implement a prototype before proceeding to far with the main implementation? How much effort did this involve? What did you learn about the platform as a result?
+
+The dissertation should be a single PDF document of a maximum of 12 pages, not including front matter and references. You must use the LaTeX template provided for the dissertation and include all the requested meta-data. The LaTeX source for the template, your dissertation and any associated figures should be stored in your version control repository in a clearly indicated directory or branch. It must be possible to build the dissertation PDF from this source, using an automated build script, such as the ant build script provided.
+
+\begin{itemize}
+\item Presentation/structure -  	Is the dissertation complete, well organised, clear and literate? Are there examples of spelling mistakes or poor grammar in the dissertation? Is there a clear logical argument and structure to the narrative? Are references used effectively? Are the references complete?
+\item Description of objectives and achievements. - Are the problem domain, scope and objectives of the project clear? Is it clear what was achieved during the project and what the key technical challenges were?
+\item Reflection -  	Are there a number of experiences/critical events discussed in the dissertation? Does each experience answer the following questions: What was the circumstances of the event? What was learned as a result of the experience? What changed in the project team (if anything) as a result of the experience? Is the experience related to other case studies available in the software engineering literature?
+\end{itemize}
+
+%==============================================================================
+\section{Introduction}
+
+Software engineering 
+
+This paper presents a case study of... 
+%% An introduction, explaining the purpose of the document, a very brief outline of the project and a summary of the structure of the rest of the document (approximately 1 pages).
+
+%% Final paragraph.
+The rest of the case study is structured as follows.  Section
+\ref{sec:background} presents the background of the case study
+discussed, describing the customer and project context, aims and
+objectives and project state at the time of writing.  Sections
+\ref{sec:Issue1} through Section \ref{sec:Issue3} discuss issues that
+arose during the project...
+
+%==============================================================================
+\section{Case Study Background}
+
+Include details of 
+%% A description of the case study background and context. This should include a description of the project customer (what was the nature of the organisation you were working for), their objectives for the project, and a summary of what was actually achieved. Where appropriate, this section should also make reference to similar related projects in order to make the context clear (approximately 1-3 pages).
+
+\begin{itemize}
+\item The customer organisation and background.
+\item The rationale and initial objectives for the project.
+\item The final software was delivered for the customer.
+\end{itemize}
+
+%==============================================================================
+\section{Issue1}
+
+%% Several sections that reflect on your experiences during the team project. Each section should discuss one theme, characterised by incidents or events that occurred during the team course of the project from which you learned (approximately 8-10 pages).
+%==============================================================================
+\section{Issue2}
+
+%% Several sections that reflect on your experiences during the team project. Each section should discuss one theme, characterised by incidents or events that occurred during the team course of the project from which you learned (approximately 8-10 pages).
+%==============================================================================
+\section{Issue3}
+
+%% Several sections that reflect on your experiences during the team project. Each section should discuss one theme, characterised by incidents or events that occurred during the team course of the project from which you learned (approximately 8-10 pages).
+%==============================================================================
+
+\section{Conclusions}
+%% A conclusion that draws general and wider lessons from the case study (approximately 1-2 pages).
+Explain the wider lessons that you learned about software engineering,
+based on the specific issues discussed in previous sections.  Reflect
+on the extent to which these lessons could be generalised to other
+types of software project.  Relate the wider lessons to others
+reported in case studies in the software engineering literature.
+
+%==============================================================================
+\bibliographystyle{plain}
+\bibliography{dissertation}
+\end{document}
