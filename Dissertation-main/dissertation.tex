@@ -4,7 +4,7 @@
 
 % Modified 
 
-\addbibresource{dissertation.bib}
+\documentclass{l3proj}
 \begin{document}
 
 \title{ESE1 Team Project Dissertation}
@@ -130,25 +130,27 @@ As a result of this, our testing pipeline could only compile the code and instan
 %\\ - Additionally, the target version of Java is installed on the CI runner, this flags accidental use of outdated java versions which are not compatible with the codebase.  
  Additionally, we configured the CI runner with the target development version of Java. On a few occasions, errors as a result of prior Java versions on developer PCs were also highlighted by our solution. 
  %\\ - Our testing technique left much to be desired
-\\However, this approach still left much to be desired. In fact, on the run up to the final product release, we noticed that the results produced by our application did not match that of the legacy program. 
+\\However, this approach still left much to be desired. In fact, on the run up to the final product release, we noticed that the results produced by our application did not match that of the legacy program. Winter describes this as "testing crunch-time"(https://techbeacon.com/app-dev-testing/testers-guide-overcoming-painful-dependencies). 
 %\\ - Here's what we couldve done better 
 %\\ - emulate the hardware.
+\\To do better, the team could've made an effort to emulate the hardware as a "Black Box" perhaps emulating some standard data from previous surface tests. This wouldn't account for the response of our product to unexpected data from the hardware, but would at least allow us to emulate the device at some level. Another approach could be to change the pipeline hosting machine to one that isn't headless. This could allow the GUI to be instantiated and perhaps tested using the Java \verb|java.awt.Robot| library to simulate user interaction. However, many online resources advise against this(https://techbeacon.com/app-dev-testing/testers-guide-overcoming-painful-dependencies).
 %\\ - Run pipeline from machine which is not headless, perhaps test using robot or equivalent. Problem - windows requirement
+Another option could be to locate the pipeline server on a machine connected to the hardware. This would be the most accurate way to include the hardware in the synthesised production environment. Finally, in hindsight, the team has learned that static code analysis has many benefits for CI testing and would've been completely feasible within our circumstances. Using this approach allows code to be checked for style compliance, static code metric evaluation and even the detection of some additional bugs. This is something we will take with us into future projects.s
 %\\ - Run pipeline from machine connected to the hardware.
 %\\ - Static code analysis testing
 %\\ - How does this relate to the case study? 
 
 
-Incidents and events
-- Set up yaml / autotesting - it mostly failed due to forgetting to add supporitng files to repo. Medium useful, but mostly a dry run learning exercise
-- Old software was kind of shit at working without the hardware and it was hard to see if the results were the same
-- Very hard to make progress away from St Alwin building because you don't know if you're going in the right direction - therefore progress somewhat sporadic
-- Even when things do work it's difficult to prove (like with the testing exercise)
+%cidents and events
+%- Set up yaml / autotesting - it mostly failed due to forgetting to add supporitng files to repo. Medium useful, but mostly a dry run learning exercise
+%- Old software was kind of shit at working without the hardware and it was hard to see if the results were the same
+%- Very hard to make progress away from St Alwin building because you don't know if you're going in the right direction - therefore progress somewhat sporadic
+%- Even when things do work it's difficult to prove (like with the testing exercise)
 
-What we learned:
-- A hardware emulator would have helped, but would the effort of building one be worth it?
-- Agree on more rigorous manual tests?
-- Agree each person goes in each weekday and tests everyone's progress? Would have helped with familiarity of each other's code too.
+%What we learned:
+%- A hardware emulator would have helped, but would the effort of building one be worth it?
+%- Agree on more rigorous manual tests?
+%- Agree each person goes in each weekday and tests everyone's progress? Would have helped with familiarity of each other's code too.
 
 %==============================================================================
 \subsection{Issue3}
@@ -164,7 +166,7 @@ on the extent to which these lessons could be generalised to other
 types of software project.  Relate the wider lessons to others
 reported in case studies in the software engineering literature.
 
-%==============================================================================
+%============================================================================== 
 \bibliographystyle{plain}
 \bibliography{dissertation}
 \end{document}
