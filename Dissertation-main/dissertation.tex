@@ -5,7 +5,12 @@
 % Modified 
 
 \documentclass{l3proj}
-
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\addbibresource{dissertation.bib}
 \begin{document}
 
 \title{ESE1 Team Project Dissertation}
@@ -100,7 +105,45 @@ What we learned:
 - Acknowledge that there is no such thing as temporary code.
 
 %==============================================================================
-\subsection{Testing or lack thereof}
+\subsection{Agile Testing For Hardware Dependant Software}
+%\\ - Agile development styles are designed for rapid deployment.
+%Within Agile development, we often talk about rapid deployment and continuous integration. 
+One important characteristic of an Agile code-base is it's frequency to change many times even within a single day.
+%\\ - To verify this, a rapid style of testing is required. 
+ For this development style, an equally rapid software testing procedure is required to verify changes to the code-base as it mutates. 
+%\\ - Rapid testing is vital because it ensures application integrity and developer confidence in the codebase. 
+ Rapid testing is a vital form of validation as it not only detects bugs in software quickly and effectively but also ensures developers continuous confidence in the code-base.
+ %\\ - Continuous integration techniques address this need this with the use of pipelines which can verify builds (reference fowler)
+\\ For continuous integration, the need for a rapid testing facility is addressed with the use of pipelines which verify builds as they are added to the codebase (reference Fowler). 
+%\\ - Fowler suggests that testing be done in a clone of the production environment. 
+Fowler suggests software pipeline testing should be performed in a clone of the software production environment. For our product, the production environment includes the hardware itself and the world it interacts with. 
+%\\ - With hardware dependant software this requirement is particularly challenging as building a virtual production environment is often a larger undertaking than the project work itself. 
+\\This presents a problem for hardware dependant software such as NextSteps. Given that we are unsure of the technical details of the hardware and exactly how it physically interacts with the world, building a virtual production environment was thought to be a more substantial undertaking than the project work itself. 
+%\\ - Kasper writes about Agile methods for embedded system development. He describes development for hardware dependant systems as challenging because hardware itself cannot be tested in an Agile fashion.
+\\ Similarly, Kasper writes about Agile methods for embedded system development (reference Kasper). 
+%\\ - Here's a case study where testing was difficult because they had hardware dependant software.
+Case study...
+%\\ - Here's the issues that we had when testing - specify our own circumstances.
+\\ These are similar issues to what the team encountered when configuring a test facility for NextSteps. 
+%\\ - Other logic classes rely on a connection to the hardware, which is also not accessible from the pipeline. 
+Our logic classes rely on a connection to hardware, which is not accessible from the CI runner - which operates from a remote server. 
+%\\ - CI runner exists in a headless environment. Therefore it is not possible to instantiate our main application code.
+Similarly, the CI runner executes in a headless environment, so instantiating the main GUI application was also not possible. 
+%\\ - Here's what we did to test the application regardless.
+%\\ - Check if the codebase builds. This basic test may be used to highlight compile-time errors
+%\\ - Instansiate AAARunner.java, check for its instantiation
+As a result of this, our testing pipeline could only compile the code and instantiate a minor class, \verb|AAARunner.java|. Our approach to testing was lacking in the rigour that may nominally be required for rapid deployment but we learned that our technique did have some merit. For example, compile-time errors pushed to the repository were always caught by the CI runner attempting to build the project. 
+%\\ - Additionally, the target version of Java is installed on the CI runner, this flags accidental use of outdated java versions which are not compatible with the codebase.  
+ Additionally, we configured the CI runner with the target development version of Java. On a few occasions, errors as a result of prior Java versions on developer PCs were also highlighted by our solution. 
+ %\\ - Our testing technique left much to be desired
+\\However, this approach still left much to be desired. In fact, on the run up to the final product release, we noticed that the results produced by our application did not match that of the legacy program. 
+%\\ - Here's what we couldve done better 
+%\\ - emulate the hardware.
+%\\ - Run pipeline from machine which is not headless, perhaps test using robot or equivalent. Problem - windows requirement
+%\\ - Run pipeline from machine connected to the hardware.
+%\\ - Static code analysis testing
+%\\ - How does this relate to the case study? 
+
 
 Incidents and events
 - Set up yaml / autotesting - it mostly failed due to forgetting to add supporitng files to repo. Medium useful, but mostly a dry run learning exercise
@@ -128,6 +171,7 @@ types of software project.  Relate the wider lessons to others
 reported in case studies in the software engineering literature.
 
 %==============================================================================
-\bibliographystyle{plain}
-\bibliography{dissertation}
+%\bibliographystyle{plain}
+%\bibliography{dissertation}
+\printbibliography
 \end{document}
