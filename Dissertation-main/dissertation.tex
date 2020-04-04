@@ -5,7 +5,6 @@
 % Modified 
 
 \documentclass{l3proj}
-
 \begin{document}
 
 \title{ESE1 Team Project Dissertation}
@@ -68,14 +67,17 @@ arose during the project...
 
 %==============================================================================
 \section{Case Study Background}
+%%Where appropriate, this section should also make reference to similar related projects in order to make the context clear (approximately 1-3 pages).
+\subsection{Our Client}
+Sports Labs Ltd. is a Scottish company based in Livingston, West Lothian. The business operates within the sports surface testing and certifying industry as a service provider to many organisations requiring accreditation for their surfaces. Sports Labs work with many standards bodies such as the Fédération Internationale de Football Association (FIFA), International Hockey Federation (FIH) and World Rugby (WR) to certify more than 800 sports fields yearly in locations all over the globe. \\
+In addition to field testing, the business  operates as a consultancy, a research and development team and a testing laboratory.\\
+Our contact within the company, Chris Dyson is current manager for the company's R\&D team. He manages engineers from many disciplines (electrical, mechanical, biomedical) with a focus on developing apparatus test methods. In addition to this, Chris is involved in industrial projects with several universities besides the University of Glasgow including Edinburgh Napier and Glasgow Strathclyde.  
+\subsection{Our Project}
+We worked to improve one of the methods Sport Labs uses to certify sports surfaces - Determination of Shock Absorbtion (FIFA test method 04A). It consists of an accelerometer attached to a 20kg weight, suspended by an electromagnet. The weight is repeatedly dropped on a surface and the accelerometer data recorded. The shock absorption is calculated by comparing the maximum force on the test specimen with the reference force of impact on concrete\cite{fifa}. In other words, how soft the surface is compared to concrete after repeated compression. \\
+The test apparatus consists of a tripod, an electromagnet, a weight, an accelerometer, a data acquisition unit (DAQ), a battery pack and software running on a Windows laptop with USB connection. The client is looking to make the test rig wireless to ease test execution, improve the DAQ (redesign the PCB to be more robust and compact) as well as get the test software running on Android so the technicians do not have to carry a laptop. These changes were quickly established to be out of scope of our project; however, we worked with these future directions in mind. \\
+We agreed to redesign the legacy software solution. Our minimum viable product consisted of a program that runs on Windows, receives data from the DAQ over USB, receives calibration offset values, calculates the shock absobtion and displays the results on a graph. This program was to be written in Java for future cross platform compatibility. Our stretch goals were to implement wireless data transfer and port the application to Android platform.
 
-Include details of 
-%% A description of the case study background and context. This should include a description of the project customer (what was the nature of the organisation you were working for), their objectives for the project, and a summary of what was actually achieved. Where appropriate, this section should also make reference to similar related projects in order to make the context clear (approximately 1-3 pages).
 
-\subsection{Our client}
-%% The customer organisation and background.
-\subsection{Our project}
-%%  The rationale and initial objectives for the project.
 \subsection{Our software}
 %% The final software was delivered for the customer.
 %% Did what viable prouct said it would do
@@ -95,18 +97,56 @@ There are a number of things we will do differenly next time. It would have been
 Considering the lack of experience with similar tasks, it would have been prudent to seek advice from faculty or classmates about the feasability of our plans and suitabilty of the tools we chose to benefit for the skill boost associated with working with experienced colleagues\cite{panwong}. It would have also helped to prioritise tasks that did not rely on GUI interaction (such as research, documentation and project planning) to allow more time for the development of a good quality graphical interface. Finally, in future projects we should take great care to decouple layout elements from logic (methods) to increase readability and reduce the time cost of editing the layout file.
 
 %==============================================================================
-\subsection{Testing or lack thereof}
+\subsection{Agile Testing For Hardware Dependant Software}
+ %\\ - Kasper writes about Agile methods for embedded system development. He describes development for hardware dependant systems as challenging because hardware itself cannot be tested in an Agile fashion.
+Hirvikoski considers Agile methods for embedded system software development \cite{hirvikoski}. One point highlighted by this report is difficulty in establishing whether a bug is the result of faulty hardware or software. Additionally, Hirvikoski describes hardware development life cycles as generally being much longer than software, often elapsing years between a singe iteration. The literature shows testing is one of the most challenging elements of a hardware dependant Agile software project. NextSteps is no exception. 
+%\\ - Agile development styles are designed for rapid deployment.
+\\One important characteristic of an Agile code-base is it's frequency to change many times even within a single day.
+%\\ - To verify this, a rapid style of testing is required. 
+ For this development style, an equally rapid software testing procedure is required to verify changes to the code-base as it mutates. 
+%\\ - Rapid testing is vital because it ensures application integrity and developer confidence in the codebase. 
+ Rapid testing is a vital form of validation as it not only detects bugs in software quickly and effectively but also ensures developers continuous confidence in the ever changing code-base.
+ %\\ - Continuous integration techniques address this need this with the use of pipelines which can verify builds (reference fowler)
+\\ For continuous integration, the need for a rapid testing facility is addressed with the use of pipelines which verify builds as they are added to the codebase\cite{fowler1}. 
+%\\ - Fowler suggests that testing be done in a clone of the production environment. 
+Fowler suggests software pipeline testing should be performed in a clone of the software production environment\cite{fowler2}. For our product, the production environment includes the hardware itself and the world it interacts with.
+%\\ - With hardware dependant software this requirement is particularly challenging as building a virtual production environment is often a larger undertaking than the project work itself. 
+\\This presents a problem for hardware dependant software such as NextSteps. Given that we are unsure of the technical details of the hardware and exactly how it physically interacts with the world, building a virtual production environment was thought to be a more substantial undertaking than the project work itself. 
+%\\ - Here's the issues that we had when testing - specify our own circumstances.
+%\\These are similar issues to what the team encountered when configuring a test facility for NextSteps. 
+%\\ - Other logic classes rely on a connection to the hardware, which is also not accessible from the pipeline. 
+\\Our logic classes rely on a connection to hardware that is not accessible from the CI runner - which operates from a remote server. 
+%\\ - CI runner exists in a headless environment. Therefore it is not possible to instantiate our main application code.
+Similarly, the CI runner executes in a headless environment, so instantiating the main GUI application was also not possible. 
+%\\ - Here's what we did to test the application regardless.
+%\\ - Check if the codebase builds. This basic test may be used to highlight compile-time errors
+%\\ - Instansiate AAARunner.java, check for its instantiation
+As a result of this, our testing pipeline could only compile the code and instantiate a minor class, \verb|AAARunner.java|. 
+\\Our approach to testing may have been lacking in the rigour that is nominally required for rapid deployment, but we learned that our technique did have some merit. For example, compile-time errors pushed to the repository were always caught by the CI runner attempting to build the project. 
+%\\ - Additionally, the target version of Java is installed on the CI runner, this flags accidental use of outdated java versions which are not compatible with the codebase.  
+We also configured the CI runner with the target development version of Java. On a few occasions, errors as a result of prior Java versions on developer PCs were also highlighted by our solution. 
+ %\\ - Our testing technique left much to be desired
+\\However, this approach still left much to be desired. In fact, on the run up to the final product release, we noticed that the results produced by our application did not match that of the legacy program. Without the subsequent urgent patching, this would have been considered a critical software failure. Winter describes this as "testing crunch-time"\cite{winter}. 
+%\\ - Here's what we couldve done better 
+%\\ - emulate the hardware.
+\\To do better, the team could've made an effort to emulate the hardware as a "Black Box" perhaps emulating some standard data from previous surface tests. This wouldn't account for the response of our product to unexpected data from the hardware, but would at least allow us to emulate the device at some level. Another approach could be to change the pipeline hosting machine to one that isn't headless. This could allow the GUI to be instantiated and perhaps tested using the Java \verb|java.awt.Robot| library to simulate user interaction. However, many online resources advise against this\cite{ruiz}.
+%\\ - Run pipeline from machine which is not headless, perhaps test using robot or equivalent. Problem - windows requirement
+Another option could be to locate the pipeline server on a machine connected to the hardware. This would be the most accurate way to include the hardware in the synthesised production environment. Finally, in hindsight, the team has learned that static code analysis has many benefits for CI testing and would've been completely feasible within our circumstances. Using this approach allows code to be checked for style compliance, static code metric evaluation and even the detection of some additional bugs\cite{balachandran}. This is something we will take with us into future projects.
+%\\ - Run pipeline from machine connected to the hardware.
+%\\ - Static code analysis testing
+%\\ - How does this relate to the case study? 
 
-Incidents and events
-- Set up yaml / autotesting - it mostly failed due to forgetting to add supporitng files to repo. Medium useful, but mostly a dry run learning exercise
-- Old software was kind of shit at working without the hardware and it was hard to see if the results were the same
-- Very hard to make progress away from St Alwin building because you don't know if you're going in the right direction - therefore progress somewhat sporadic
-- Even when things do work it's difficult to prove (like with the testing exercise)
 
-What we learned:
-- A hardware emulator would have helped, but would the effort of building one be worth it?
-- Agree on more rigorous manual tests?
-- Agree each person goes in each weekday and tests everyone's progress? Would have helped with familiarity of each other's code too.
+%cidents and events
+%- Set up yaml / autotesting - it mostly failed due to forgetting to add supporitng files to repo. Medium useful, but mostly a dry run learning exercise
+%- Old software was kind of shit at working without the hardware and it was hard to see if the results were the same
+%- Very hard to make progress away from St Alwin building because you don't know if you're going in the right direction - therefore progress somewhat sporadic
+%- Even when things do work it's difficult to prove (like with the testing exercise)
+
+%What we learned:
+%- A hardware emulator would have helped, but would the effort of building one be worth it?
+%- Agree on more rigorous manual tests?
+%- Agree each person goes in each weekday and tests everyone's progress? Would have helped with familiarity of each other's code too.
 
 %==============================================================================
 \subsection{Issue3}
@@ -121,11 +161,6 @@ based on the specific issues discussed in previous sections.  Reflect
 on the extent to which these lessons could be generalised to other
 types of software project.  Relate the wider lessons to others
 reported in case studies in the software engineering literature.
-
-- Important learning experience
-- Large emphasis on writing code itself, not enough 
-
-%==============================================================================
 \bibliographystyle{plain}
 \bibliography{dissertation}
 \end{document}
