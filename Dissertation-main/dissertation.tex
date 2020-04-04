@@ -60,24 +60,22 @@ This paper presents a case study of...
 
 %% Final paragraph.
 The rest of the case study is structured as follows.  Section
-\ref{sec:background} presents the background of the case study discussed, describing the customer and project context, aims and
-objectives and project state at the time of writing.  Sections
+\ref{sec:Case Study Background} presents the background of the case study discussed, introduces the customer, their motivation, the goals and intentions of the project and describes the final product. Sections
 \ref{sec:Issue1} through Section \ref{sec:Issue3} discuss issues that
 arose during the project...
 
 %==============================================================================
 \section{Case Study Background}
-
-Include details of 
-%% A description of the case study background and context. This should include a description of the project customer (what was the nature of the organisation you were working for), their objectives for the project, and a summary of what was actually achieved. Where appropriate, this section should also make reference to similar related projects in order to make the context clear (approximately 1-3 pages).
-
-\subsection{Our client}
-Sports Labs Ltd. is a Scottish company based in Livingston, West Lothian. The business operates within the sports surface testing industry as a service provider to many organisations requiring accreditation for their surfaces. Sports Labs work with many standards bodies such as the Fédération Internationale de Football Association (FIFA), International Hockey Federation (FIH) and World Rugby (WR) to certify more than 800 sports fields yearly in locations all over the globe. \\
-In addition to field testing, the business  operates a consultancy, a research and development team and a testing laboratory.\\
-Our contact within the company, Chris Dyson is current manager for the company R\&D team. He manages engineers from many disciplines (electrical, mechanical, biomedical) with a focus on developing apparatus test methods. In addition to this, Chris is involved in industrial projects with several universities besides the University of Glasgow including Edinburgh Napier and Glasgow Strathclyde.  
-\subsection{Our project}
-%%  The rationale and initial objectives for the project.
-\subsection{Our software}
+%%Where appropriate, this section should also make reference to similar related projects in order to make the context clear (approximately 1-3 pages).
+\subsection{Our Client}
+Sports Labs Ltd. is a Scottish company based in Livingston, West Lothian. The business operates within the sports surface testing and certifying industry as a service provider to many organisations requiring accreditation for their surfaces. Sports Labs work with many standards bodies such as the Fédération Internationale de Football Association (FIFA), International Hockey Federation (FIH) and World Rugby (WR) to certify more than 800 sports fields yearly in locations all over the globe. \\
+In addition to field testing, the business  operates as a consultancy, a research and development team and a testing laboratory.\\
+Our contact within the company, Chris Dyson is current manager for the company's R\&D team. He manages engineers from many disciplines (electrical, mechanical, biomedical) with a focus on developing apparatus test methods. In addition to this, Chris is involved in industrial projects with several universities besides the University of Glasgow including Edinburgh Napier and Glasgow Strathclyde.  
+\subsection{Our Project}
+We worked to improve one of the methods Sport Labs uses to certify sports surfaces - Determination of Shock Absorbtion (FIFA test method 04A). It consists of an accelerometer attached to a 20kg weight, suspended by an electromagnet. The weight is repeatedly dropped on a surface and the accelerometer data recorded. The shock absorption is calculated by comparing the maximum force on the test specimen with the reference force of impact on concrete\cite{fifa}. In other words, how soft the surface is compared to concrete after repeated compression. \\
+The test apparatus consists of a tripod, an electromagnet, a weight, an accelerometer, a data acquisition unit (DAQ), a battery pack and software running on a Windows laptop with USB connection. The client is looking to make the test rig wireless to ease test execution, improve the DAQ (redesign the PCB to be more robust and compact) as well as get the test software running on Android so the technicians do not have to carry a laptop. These changes were quickly established to be out of scope of our project; however, we worked with these future directions in mind. \\
+We agreed to redesign the legacy software solution. Our minimum viable product consisted of a program that runs on Windows, receives data from the DAQ over USB, receives calibration offset values, calculates the shock absobtion and displays the results on a graph. This program was to be written in Java for future cross platform compatibility. Our stretch goals were to implement wireless data transfer and port the application to Android platform.
+\subsection{Our Software}
 %% The final software was delivered for the customer.
 
 %==============================================================================
