@@ -61,10 +61,13 @@ We agreed to redesign the legacy software solution. Our minimum viable product c
 
 
 \subsection{Our Software}
-%% The final software was delivered for the customer.
-%% Did what viable prouct said it would do
-%% Improvements: multi test display, less clutter, fewer unused features, uneditable calibration file, graph overlay, exp;licit functions, no error messages
-%% Research made into wireless solution
+The software product we delivered is called "NextSTEPS" as a reference to its predecessor, "STEPS". It is written in Java and compiled into an executable, with the Sports Labs' logo as its icon. The program's prerequisites are InstaCAL drivers and Java version 1.9 or higher. The program does not require installation.
+
+NextSTEPS meets the requirements agreed in the beginning of the project: it consists of a simple GUI, with options to choose calibration pre-sets, enable or disable the magnet on the Advanced Artificial Athlete hardware and start the test. Most of the window is taken up by the graph viewing panel that overlays consecutive tests. A panel on the bottom left corner records and averages the results of three consecutive tests, as required by the test specification\cite{fifa}.
+
+Our program brings a number of improvements over the legacy application: the calibration offsets, that only need to be updated about once a year no longer need to be entered every time the program is run. It is also not possible to unintentionally modify them, as these cannot be edited from inside the software. They are instead kept in a separate comma delimited file. The results area is no longer hidden in a tab and can be seen at all times, saving unnecessary clicks. The program now holds data about several tests and averages results, saving manual calculator work by the users.
+
+Finally, though not implemented at this time, the program is written with a future wireless implementation in mind. For example, unlike the legacy program, NextSTEPS does not produce continuous and inescapable error messages when the test hardware isn't detected, to account for range and lack of reliability of wireless signals and allow the users to work switch the data after the hardware has been moved or switched off. The magnet, that releases a 20kg weight, can only be toggled by explicitly pressing a button and no signals are sent to it when the software connects or disconnects as a safety feature. The magnet status button also changes colour depending on the status of the hardware, making it more obvious at a glance. Linux drivers have been also been written for the possibility of attaching a raspberry pi in the future for bluetooth data transfer. 
 %==============================================================================
 \section{Reflections}
 \subsection{Propagation of Early Design Decisions}
