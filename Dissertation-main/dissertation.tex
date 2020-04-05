@@ -78,28 +78,23 @@ The test apparatus consists of a tripod, an electromagnet, a weight, an accelero
 We agreed to redesign the legacy software solution. Our minimum viable product consisted of a program that runs on Windows, receives data from the DAQ over USB, receives calibration offset values, calculates the shock absobtion and displays the results on a graph. This program was to be written in Java for future cross platform compatibility. Our stretch goals were to implement wireless data transfer and port the application to Android platform.
 
 
-\subsection{Our software}
+\subsection{Our Software}
 %% The final software was delivered for the customer.
-
+%% Did what viable prouct said it would do
+%% Improvements: multi test display, less clutter, fewer unused features, uneditable calibration file, graph overlay, exp;licit functions, no error messages
+%% Research made into wireless solution
 %==============================================================================
 \section{Reflections}
-\subsection{Windowbuilder themed part, not sure about name yet}
+\subsection{Propagation of Early Design Decisions}
 
-Incidents and events:
-- Moving things about in the GUI disaasociated comments from corresponding code
-- Made merge impossible
-- Propagation of early, "temporary" design decisions
-- Difficult to rename variables
-- Look into why diff was so confused
-- Mention abandoned branch merges
-- Could only complete changes on the last day afer everyone else was done
-- Perhaps something on deadlocks waiting for others to finish
-
-What we learned:
-- Make more files
-- Balance workload
-- Push earlier releases to see all the cracks in the seams
-- Acknowledge that there is no such thing as temporary code.
+Development of the graphical user interface (GUI) for the application introduced a significant amount of technical debt to the project. Technical debt describes scenarios in software development practice where developers take shortcuts or implement workarounds\cite{yli-huumo}. This could be to make quick progress and push an earlier release\cite{kruchten}, or accept sacrifices in software quality in order to meet a deadline\cite{zazworka}. Johann describes how every development team must decide if their technical debt should be "paid" (replaced the software component), "converted" (modified in place) or "accepted" (accepted that the cost of replacing the software is more than the cost of maintaining it)\cite{wolff}.\\
+The team had no experience in writing GUI applications aside from an introductory Python course two years prior; so time was allocated to research possible solutions, choose the most appropriate tools and learn how to use them effectively. Unfortunately, not having any sort of reference user interface hindered the early progress of other tasks, particularly connecting backend (driver software) to frontend and implementing display of output data. A temporary mock-up of the legacy program was created so behaviour (such as action listeners) could be attached to GUI objects and make it easier for other members of the team to make contributions before the GUI was finalised.\\
+The decision to implement a temporary solution had an overall negative effect on the software. It reduced the sense of urgency about this aspect of the program and it felt unnecessary to return to it considering many other unimplemented features in the issue log. It also caused us to develop a sort of blindness to its flaws - whenever a GUI bug was discovered, it was brushed off citing the pending reskin of the application. In the future we will create more detailed issues describing specific bugs to ensure all the issues are properly addressed in the final version.\\
+We used the Windowbuilder Eclipse plugin to create a Java Swing based interface. Windowbuilder saves time, explains features and simplifies configuration of various Swing components\cite{windowbuilder}. While Windowbuilder was undeniably a great asset to the project, it also caused some issues. Occasionally when moving components in Windowbuilder, the corresponding code would inexplicably be moved to a different part of the file, in some cases ending up in the middle of another logical code block (and even inside method calls). In all cases it failed to move comments associated with the code to the new location. This not only wasted valuable development time, but on occasion caused damage to program logic which wasn't apparent until several commits later. In one catastrophic case this caused the developer to abandon the entire branch as it took less time to reimplement the changes than untangle the code. Rearrangement of layout components also caused numerous merge conflicts in places where code had not actually been modified, further slowing development.\\
+Another problem caused by "temporary" code was meaningless variable naming. The entire interface was recreated from scratch several times early in the learning process. The version that ended up being used for the majority of the project was filled with default Windowbuilder allocated variable names. These could only be deciphered by launching the GUI. This was immediately recognised as a problem, but the properly named variables caused merge conflicts on nearly every line of the program, once again forcing the team to abandon changes. In the end it was only possible to rename variables and revamp the layout of the application subsequent to completion of all other tasks, only a few hours before code freeze.\\
+Temporary code is useful and unavoidable \cite{halpern}. For us, it improved the divisibility of our workload. In hindsight it is also common to attribute lack of flexibility or errors in code to taking short cuts\cite{stopford}. Now that our ability to use GUI tools is considerably further along the learning curve, we can see that the early design decisions were poorly planned. \\
+There are a number of things we will do differently next time. It would have been immensely useful to create a high level description of the components and their names, such as a sketch. We have learned that implementing a temporary solution and then blindly sticking to it - due to the perceived difficulty of addressing the technical debt - can, and in this case did, cost us more time and effort than it saved. It would have also helped to create earlier releases of the software. This would force everyone to acknowledge the inevitable shortcomings at earlier stages.\\
+Considering the lack of experience with similar tasks, it would have been prudent to seek advice from faculty or classmates. Had this advice included feasibility of our plans and the suitability of the tools we chose, it could have benefited the skill boost associated with working with experienced colleagues\cite{panwong}. It would have also helped to prioritise tasks that did not rely on GUI interaction (research, documentation and project planning) to allow more time for the development of a good quality graphical interface. Finally, in future projects, we should take great care to decouple layout elements from logic to increase readability and reduce the time cost of editing the layout file.
 
 %==============================================================================
 \subsection{Agile Testing For Hardware Dependant Software}
@@ -166,8 +161,6 @@ based on the specific issues discussed in previous sections.  Reflect
 on the extent to which these lessons could be generalised to other
 types of software project.  Relate the wider lessons to others
 reported in case studies in the software engineering literature.
-
-%============================================================================== 
 \bibliographystyle{plain}
 \bibliography{dissertation}
 \end{document}
