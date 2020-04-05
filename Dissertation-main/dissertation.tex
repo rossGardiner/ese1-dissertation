@@ -33,20 +33,20 @@
 %==============================================================================
 \section{Introduction}
 
+This paper presents a case study of the NextSTEPS application and its constructing agile development process. NextSTEPS is team ESE1's evolutionary improvement on the STEPS (Sports Test Equip Performance Software) application. STEPS is a program for interacting with hardware designed to test sports playing surfaces. This hardware is the Advanced Artifical Athlete (AAA) \ref{fig:AAA}. The program signals the release of a powerful electromagnet and records information from an accelerometer. This is used to calculate metrics about the playing surface. The project involved a plethora of programming challenges, from low-level hardware interrogation to data visualisation techniques. The addition of hardware also makes our work unique, and brought an interesting flavour to our experience of the agile software process. 
+\\
+This paper first deals with our client, Sports Labs. We then discuss the requirement for the development of NextSTEPS and an overview of our final delivered product. 
+\\
+To document the learning experience of the team, we cover three reflections, Propagation of Early Design Decisions, Agile Testing for Hardware Dependant Software and Overly Ambitious Sprint Deliverables. Each reflection envelops a challenge the team had, the reasons for our shortcomings and how we can address them in the future. 
+\\
+To close, this paper includes several concluded learning outcomes attained by this work. 
 
-
-Software engineering 
-
-This paper presents a case study of... 
-%% An introduction, explaining the purpose of the document, a very brief outline of the project and a summary of the structure of the rest of the document (approximately 1 pages).
-
-%% Final paragraph.
-The rest of the case study is structured as follows.  Section
-\ref{sec:background} presents the background of the case study
-discussed, describing the customer and project context, aims and
-objectives and project state at the time of writing.  Sections
-\ref{sec:Issue1} through Section \ref{sec:Issue3} discuss issues that
-arose during the project...
+\begin{figure}[h]
+\label{fig:AAA}
+\caption{Advanced Artificial Athlete (AAA) Hardware \cite{sportstestequip} }
+\centering
+\includegraphics[width=0.5\textwidth]{./images/AAA+3.png}
+\end{figure}
 
 %==============================================================================
 \section{Case Study Background}
@@ -69,6 +69,9 @@ Our program brings a number of improvements over the legacy application: the cal
 
 Finally, though not implemented at this time, the program is written with a future wireless implementation in mind. For example, unlike the legacy program, NextSTEPS does not produce continuous and inescapable error messages when the test hardware isn't detected, to account for range and lack of reliability of wireless signals and allow the users to work switch the data after the hardware has been moved or switched off. The magnet, that releases a 20kg weight, can only be toggled by explicitly pressing a button and no signals are sent to it when the software connects or disconnects as a safety feature. The magnet status button also changes colour depending on the status of the hardware, making it more obvious at a glance. Linux drivers have been also been written for the possibility of attaching a raspberry pi in the future for bluetooth data transfer. 
 %==============================================================================
+
+
+
 \section{Reflections}
 \subsection{Propagation of Early Design Decisions}
 Development of the graphical user interface (GUI) for the application introduced a significant amount of technical debt to the project. Technical debt describes scenarios in software development practice where developers take shortcuts or implement workarounds\cite{yli-huumo}. This could be to make quick progress and push an earlier release\cite{kruchten}, or accept sacrifices in software quality in order to meet a deadline\cite{zazworka}. Johann describes how every development team must decide if their technical debt should be "paid" (replaced the software component), "converted" (modified in place) or "accepted" (accepted that the cost of replacing the software is more than the cost of maintaining it)\cite{wolff}.\\
