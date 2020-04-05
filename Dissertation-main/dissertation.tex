@@ -33,13 +33,20 @@
 %==============================================================================
 \section{Introduction}
 
-This paper presents a case study of the NextSTEPS application and its constructing agile development process. NextSTEPS is team ESE1's evolutionary improvement on the STEPS (Sports Test Equip Performance Software) application. STEPS is a program for interacting with hardware designed to test sports playing surfaces. This hardware is the Advanced Artifical Athlete (AAA) \ref{figure}. The program signals the release of a powerful electromagnet and records information from an accelerometer. This is used to calculate metrics about the playing surface. The project involved a plethora of programming challenges, from low-level hardware interrogation to data visualisation techniques. The addition of hardware also makes our work unique, and brought an interesting flavour to our experience of the agile software process. 
+This paper presents a case study of the NextSTEPS application and its constructing agile development process. NextSTEPS is team ESE1's evolutionary improvement on the STEPS (Sports Test Equip Performance Software) application. STEPS is a program for interacting with hardware designed to test sports playing surfaces. This hardware is the Advanced Artifical Athlete (AAA) \ref{fig:AAA}. The program signals the release of a powerful electromagnet and records information from an accelerometer. This is used to calculate metrics about the playing surface. The project involved a plethora of programming challenges, from low-level hardware interrogation to data visualisation techniques. The addition of hardware also makes our work unique, and brought an interesting flavour to our experience of the agile software process. 
 \\
 This paper first deals with our client, Sports Labs. We then discuss the requirement for the development of NextSTEPS and an overview of our final delivered product. 
 \\
 To document the learning experience of the team, we cover three reflections, Propagation of Early Design Decisions, Agile Testing for Hardware Dependant Software and Overly Ambitious Sprint Deliverables. Each reflection envelops a challenge the team had, the reasons for our shortcomings and how we can address them in the future. 
 \\
 To close, this paper includes several concluded learning outcomes attained by this work. 
+
+\begin{figure}[h]
+\label{fig:AAA}
+\caption{Advanced Artificial Athlete (AAA) Hardware \cite{sportstestequip} }
+\centering
+\includegraphics[width=0.5\textwidth]{./images/AAA+3.png}
+\end{figure}
 
 %==============================================================================
 \section{Case Study Background}
@@ -60,11 +67,7 @@ We agreed to redesign the legacy software solution. Our minimum viable product c
 %% Research made into wireless solution
 %==============================================================================
 
-\begin{figure}[h]
-\caption{Advanced Artificial Athlete (AAA) Hardware \cite{sportstestequip} }
-\centering
-\includegraphics[width=0.5\textwidth]{AAA+3.png}
-\end{figure}
+
 
 \section{Reflections}
 \subsection{Propagation of Early Design Decisions}
