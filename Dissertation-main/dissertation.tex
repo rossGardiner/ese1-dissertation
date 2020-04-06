@@ -7,7 +7,7 @@
 \documentclass{l3proj}
 \begin{document}
 
-\title{ESE1 Team Project Dissertation}
+\title{Making NextSTEPS: a reflection of team ESE1 software process}
 
 \author{Agnes Ola \\
         Ross James Gardiner \\
@@ -21,9 +21,9 @@
 
 \begin{abstract}
 
-What follows is a case study of the construction of the NextSTEPS application using the Agile software development process. This is a project by Team ESE1 for customer Sports Labs. Our product was is for the completion of the university module, Team Project 3. 
+What follows is a case study of the construction of the NextSTEPS application using the Agile software development process. This is a project by Team ESE1 for customer Sports Labs. Our product was is for the completion of the university module, Team Project ESE. 
 
-Throughout this paper, we discuss the project itself, the customer and our delivered product. We also highlight some key reflections which allowed us to learn and improve upon our Agile process. These are; Propagation of Early Design Decisions, Agile Testing For Hardware Dependant Software and Overly Ambitious Sprint Deliverables.  
+Throughout this paper, we discuss the project itself, the customer and our delivered product. We also highlight some key reflections which allowed us to learn and improve upon our Agile process. These are: Propagation of Early Design Decisions, Agile Testing For Hardware Dependant Software and Overly Ambitious Sprint Deliverables.
 
 \end{abstract}
 
@@ -45,9 +45,9 @@ To close, this paper includes several concluded learning outcomes attained by th
 
 \begin{figure}[h]
 \label{fig:AAA}
-\caption{Advanced Artificial Athlete (AAA) Hardware \cite{sportstestequip} }
 \centering
 \includegraphics[width=0.5\textwidth]{./images/AAA+3.png}
+\caption{Advanced Artificial Athlete (AAA) Hardware \cite{sportstestequip} }
 \end{figure}
 %==============================================================================
 \section{Case Study Background}
@@ -66,18 +66,18 @@ We agreed to redesign the legacy software solution. Our minimum viable product c
 
 
 \subsection{Our Software}
-The software product we delivered is called "NextSTEPS" as a reference to its predecessor, "STEPS". It is written in Java and compiled into an executable, with the Sports Labs' logo as its icon. The program's prerequisites are InstaCAL drivers and Java version 1.9 or higher. The program does not require installation.
+The software product we delivered is called ``NextSTEPS'' as a reference to its predecessor, ``STEPS''. It is written in Java and compiled into an executable, with the Sports Labs' logo as its icon. The program's prerequisites are InstaCAL drivers and Java version 1.9 or higher. The program does not require installation.
 
 NextSTEPS meets the requirements agreed in the beginning of the project: it consists of a simple GUI, with options to choose calibration pre-sets, enable or disable the magnet on the Advanced Artificial Athlete hardware and start the test. Most of the window is taken up by the graph viewing panel that overlays consecutive tests. A panel on the bottom left corner records and averages the results of three consecutive tests, as required by the test specification\cite{fifa}.
 
 Our program brings a number of improvements over the legacy application: the calibration offsets, that only need to be updated about once a year no longer need to be entered every time the program is run. It is also not possible to unintentionally modify them, as these cannot be edited from inside the software. They are instead kept in a separate comma delimited file. The results area is no longer hidden in a tab and can be seen at all times, saving unnecessary clicks. The program now holds data about several tests and averages results, saving manual calculator work by the users.
 
-Finally, though not implemented at this time, the program is written with a future wireless implementation in mind. For example, unlike the legacy program, NextSTEPS does not produce continuous and inescapable error messages when the test hardware isn't detected, to account for range and lack of reliability of wireless signals and allow the users to work switch the data after the hardware has been moved or switched off. The magnet, that releases a 20kg weight, can only be toggled by explicitly pressing a button and no signals are sent to it when the software connects or disconnects as a safety feature. The magnet status button also changes colour depending on the status of the hardware, making it more obvious at a glance. Linux drivers have been also been written for the possibility of attaching a raspberry pi in the future for bluetooth data transfer. 
+Finally, though not implemented at this time, the program is written with a future wireless implementation in mind. For example, unlike the legacy program, NextSTEPS does not produce continuous and inescapable error messages when the test hardware isn't detected, to account for range and lack of reliability of wireless signals and allow the users to work switch the data after the hardware has been moved or switched off. The magnet, that releases a 20kg weight, can only be toggled by explicitly pressing a button and no signals are sent to it when the software connects or disconnects as a safety feature. The magnet status button also changes colour depending on the status of the hardware, making it more obvious at a glance. Linux drivers have been also been written for the possibility of attaching a Raspberry Pi in the future for bluetooth data transfer. 
 %==============================================================================
 \section{Reflections}
 \subsection{Propagation of Early Design Decisions}
 \label{subsection:prop}
-Development of the graphical user interface (GUI) for the application introduced a significant amount of technical debt to the project. Technical debt describes scenarios in software development practice where developers take shortcuts or implement workarounds\cite{yli-huumo}. This could be to make quick progress and push an earlier release\cite{kruchten}, or accept sacrifices in software quality in order to meet a deadline\cite{zazworka}. Johann describes how every development team must decide if their technical debt should be "paid" (replaced the software component), "converted" (modified in place) or "accepted" (accepted that the cost of replacing the software is more than the cost of maintaining it)\cite{wolff}.
+Development of the graphical user interface (GUI) for the application introduced a significant amount of technical debt to the project. Technical debt describes scenarios in software development practice where developers take shortcuts or implement workarounds\cite{yli-huumo}. This could be to make quick progress and push an earlier release\cite{kruchten}, or accept sacrifices in software quality in order to meet a deadline\cite{zazworka}. Johann describes how every development team must decide if their technical debt should be ``paid" (replaced the software component), ``converted" (modified in place) or ``accepted" (accepted that the cost of replacing the software is more than the cost of maintaining it)\cite{wolff}.
 
 The team had no experience in writing GUI applications aside from an introductory Python course two years prior; so time was allocated to research possible solutions, choose the most appropriate tools and learn how to use them effectively. Unfortunately, not having any sort of reference user interface hindered the early progress of other tasks, particularly connecting backend (driver software) to frontend and implementing display of output data. A temporary mock-up of the legacy program was created so behaviour (such as action listeners) could be attached to GUI objects and to make it easier for other members of the team to make contributions before the GUI was finalised.
 
@@ -85,7 +85,7 @@ The decision to implement a temporary solution had an overall negative effect on
 
 We used the Windowbuilder Eclipse plugin to create a Java Swing based interface. Windowbuilder saves time, explains features and simplifies configuration of various Swing components\cite{windowbuilder}. While Windowbuilder was undeniably a great asset to the project, it also caused some issues. Occasionally when moving components in Windowbuilder, the corresponding code would inexplicably be moved to a different part of the file, in some cases ending up in the middle of another logical code block (and even inside method calls). In all cases it failed to move comments associated with the code to the new location. This not only wasted valuable development time, but on occasion caused damage to program logic which wasn't apparent until several commits later. In one catastrophic case this caused the developer to abandon the entire branch as it took less time to reimplement the changes than untangle the code. Rearrangement of layout components also caused numerous merge conflicts in places where code had not actually been modified, further slowing development.
 
-Another problem caused by "temporary" code was meaningless variable naming. The entire interface was recreated from scratch several times early in the learning process. The version that ended up being used for the majority of the project was filled with default Windowbuilder allocated variable names. These could only be deciphered by launching the GUI. This was immediately recognised as a problem, but the properly named variables caused merge conflicts on nearly every line of the program, once again forcing the team to abandon changes. In the end it was only possible to rename variables and revamp the layout of the application subsequent to completion of all other tasks, only a few hours before code freeze.
+Another problem caused by ``temporary" code was meaningless variable naming. The entire interface was recreated from scratch several times early in the learning process. The version that ended up being used for the majority of the project was filled with default Windowbuilder allocated variable names. These could only be deciphered by launching the GUI. This was immediately recognised as a problem, but the properly named variables caused merge conflicts on nearly every line of the program, once again forcing the team to abandon changes. In the end it was only possible to rename variables and revamp the layout of the application subsequent to completion of all other tasks, only a few hours before code freeze.
 
 Temporary code is useful and unavoidable \cite{halpern}. For us, it improved the divisibility of our workload. In hindsight it is also common to attribute lack of flexibility or errors in code to taking short cuts\cite{stopford}. Now that our ability to use GUI tools is considerably further along the learning curve, we can see that the early design decisions were poorly planned. 
 
@@ -129,11 +129,11 @@ Our approach to testing may have been lacking in the rigour that is nominally re
 We also configured the CI runner with the target development version of Java. On a few occasions, errors as a result of prior Java versions on developer PCs were also highlighted by our solution. 
  %\\ - Our testing technique left much to be desired
 
-However, this approach still left much to be desired. In fact, on the run up to the final product release, we noticed that the results produced by our application did not match that of the legacy program. Without the subsequent urgent patching, this would have been considered a critical software failure. Winter describes this as "testing crunch-time"\cite{winter}. 
+However, this approach still left much to be desired. In fact, on the run up to the final product release, we noticed that the results produced by our application did not match that of the legacy program. Without the subsequent urgent patching, this would have been considered a critical software failure. Winter describes this as ``testing crunch-time"\cite{winter}. 
 %\\ - Here's what we couldve done better 
 %\\ - emulate the hardware.
 
-To do better, the team could've made an effort to emulate the hardware as a "Black Box" perhaps using some standard data from previous surface tests. This wouldn't account for the response of our product to unexpected data from the hardware, but would at least allow us to synthesise the device at some level. Another approach could be to change the pipeline hosting machine to one that isn't headless. This could allow the GUI to be instantiated and perhaps tested using the Java \verb|java.awt.Robot| library to simulate user interaction. However, many online resources advise against this\cite{ruiz}.
+To do better, the team could've made an effort to emulate the hardware as a ``Black Box" perhaps using some standard data from previous surface tests. This wouldn't account for the response of our product to unexpected data from the hardware, but would at least allow us to synthesise the device at some level. Another approach could be to change the pipeline hosting machine to one that isn't headless. This could allow the GUI to be instantiated and perhaps tested using the Java \verb|java.awt.Robot| library to simulate user interaction. However, many online resources advise against this\cite{ruiz}.
 %\\ - Run pipeline from machine which is not headless, perhaps test using robot or equivalent. Problem - windows requirement
 Another option could be to locate the pipeline server on a machine connected to the hardware. This would be the most accurate way to include the hardware in the synthesised production environment. Finally, in hindsight, the team has learned that static code analysis has many benefits for CI testing and would've been completely feasible within our circumstances. Using this approach allows code to be checked for style compliance, static code metric evaluation and even the detection of some additional bugs\cite{balachandran}. This is something we will take with us into future projects.
 %\\ - Run pipeline from machine connected to the hardware.
@@ -142,7 +142,7 @@ Another option could be to locate the pipeline server on a machine connected to 
 
 \subsection{Overly Ambitious Sprint Deliverables}
 \label{subsection:over}
-During the early project sprints, the team suffered from the self-assignment of overly ambitious deliverables for the given time. While uncertainty and inaccuracy is inherent to estimating software development effort\cite{ezghari}, this was particularly problematic because depth-first "rabbit hole" tasks often diverted the team's attention from executing tasks related to the prior agreed minimum viable product. To shed some light on the cause of this problem and how we rectified it as a team, we must consider the circumstances that allowed it to occur.
+During the early project sprints, the team suffered from the self-assignment of overly ambitious deliverables for the given time. While uncertainty and inaccuracy is inherent to estimating software development effort\cite{ezghari}, this was particularly problematic because depth-first ``rabbit hole" tasks often diverted the team's attention from executing tasks related to the prior agreed minimum viable product. To shed some light on the cause of this problem and how we rectified it as a team, we must consider the circumstances that allowed it to occur.
 
 Team ESE1 is a dynamic team, with members from many diverse backgrounds, with different capabilities and skillsets. To give an example, one member of our team has had particular unique exposure to low level programming and electronic design. During the early customer days, that member was likely to push for ambitious goals - perhaps neglecting the fact that not all members were capable of delivering this type of work. A project which takes one developer two months, will take more than one month if two developers work on it\cite{brooks} - this is considered common sense in modern development practice\cite{hanakawa}. This was catalysed by the addition of our enthusiastic customer who is, predictably, in favour of any and all new features. We were keen to offer ideas and make promises as we felt responsibility for the project. Perhaps in a way we wouldn't normally for an academic assignment, as anticipated by the course coordinators\cite{simpson}. As a result, customer days were often dominated by long conversations about intricate details of technical features not defined to be within the scope of the minimum viable product. This caused confusion with regards to the customer's expectation of the team's performance. This is symptomatic of a young team, which hasn't yet completed many sprints together. We adopted several measures to help rectify the problem. 
 
@@ -167,6 +167,7 @@ We have all improved individually as developers, communicators and planners and 
 %on the extent to which these lessons could be generalised to other
 %types of software project.  Relate the wider lessons to others
 %reported in case studies in the software engineering literature.
+\newpage
 \bibliographystyle{plain}
 \bibliography{dissertation}
 \end{document}
